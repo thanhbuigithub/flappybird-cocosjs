@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" useUTFGuessing="false" native2AsciiForPropertiesFiles="false">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/assests/game/animation/character/bird/texture/0.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/assests/game/animation/character/bird/texture/1.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/assests/game/animation/character/bird/texture/2.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/assests/game/animation/character/bird/texture/3.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/assests/game/animation/character/bird/texture/4.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/assests/game/animation/character/bird/texture/5.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/assests/game/animation/character/bird/texture/6.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/assests/game/animation/character/bird/texture/7.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/assests/game/animation/character/bird/texture/8.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/assests/game/animation/character/bird/texture/9.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/assests/game/animation/character/bird/texture/background-day.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/assests/game/animation/character/bird/texture/background-night.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/assests/game/animation/character/bird/texture/base.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/assests/game/animation/character/bird/texture/bluebird-downflap.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/assests/game/animation/character/bird/texture/bluebird-midflap.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/assests/game/animation/character/bird/texture/bluebird-upflap.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/assests/game/animation/character/bird/texture/gameover.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/assests/game/animation/character/bird/texture/message.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/assests/game/animation/character/bird/texture/pipe-green.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/assests/game/animation/character/bird/texture/pipe-red.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/assests/game/animation/character/bird/texture/redbird-downflap.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/assests/game/animation/character/bird/texture/redbird-midflap.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/assests/game/animation/character/bird/texture/redbird-upflap.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/assests/game/animation/character/bird/texture/yellowbird-downflap.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/assests/game/animation/character/bird/texture/yellowbird-midflap.png" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/assests/game/animation/character/bird/texture/yellowbird-upflap.png" charset="windows-1252" />
+  </component>
+</project>

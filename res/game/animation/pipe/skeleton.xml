@@ -1,0 +1,21 @@
+<dragonBones name="pipe" frameRate="24" version="2.3">
+    <armature name="pipe">
+        <bone name="Layer 1">
+            <transform x="0" y="0.05" skX="0" skY="0" scX="1" scY="1"/>
+        </bone>
+        <skin name="default">
+            <slot name="Layer 1" parent="Layer 1" z="0">
+                <display name="pipe-green" type="image">
+                    <transform x="-26" y="-160" skX="0" skY="0" scX="1" scY="1" pX="0" pY="0"/>
+                </display>
+            </slot>
+        </skin>
+        <animation name="pipe_0_" fadeInTime="0" duration="1" scale="1" loop="0" autoTween="1" tweenEasing="NaN">
+            <timeline name="Layer 1" scale="1" offset="0">
+                <frame z="0" displayIndex="1" duration="1">
+                    <transform x="0" y="0.05" skX="0" skY="0" scX="1" scY="1" pX="0" pY="0"/>
+                </frame>
+            </timeline>
+        </animation>
+    </armature>
+</dragonBones>
