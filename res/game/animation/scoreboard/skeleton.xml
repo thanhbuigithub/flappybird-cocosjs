@@ -1,0 +1,66 @@
+<dragonBones name="scoreboard" frameRate="24" version="2.3">
+    <armature name="scoreboard">
+        <bone name="Layer 1">
+            <transform x="0" y="0.05" skX="0" skY="0" scX="1" scY="1"/>
+        </bone>
+        <bone name="Layer 2">
+            <transform x="0" y="0.05" skX="0" skY="0" scX="1" scY="1"/>
+        </bone>
+        <bone name="Layer 3">
+            <transform x="0" y="0.05" skX="0" skY="0" scX="1" scY="1"/>
+        </bone>
+        <bone name="Layer 4">
+            <transform x="0" y="0.05" skX="0" skY="0" scX="1" scY="1"/>
+        </bone>
+        <skin name="default">
+            <slot name="Layer 1" parent="Layer 1" z="0">
+                <display name="scoreboard" type="image">
+                    <transform x="-113" y="-59" skX="0" skY="0" scX="1" scY="1" pX="0" pY="0"/>
+                </display>
+            </slot>
+            <slot name="Layer 2" parent="Layer 2" z="0">
+                <display name="coppermedal" type="image">
+                    <transform x="-22" y="-22" skX="0" skY="0" scX="1" scY="1" pX="0" pY="0"/>
+                </display>
+            </slot>
+            <slot name="Layer 3" parent="Layer 3" z="0">
+                <display name="goldmedal" type="image">
+                    <transform x="-22" y="-22" skX="0" skY="0" scX="1" scY="1" pX="0" pY="0"/>
+                </display>
+            </slot>
+            <slot name="Layer 4" parent="Layer 4" z="0">
+                <display name="silvermedal" type="image">
+                    <transform x="-22" y="-22" skX="0" skY="0" scX="1" scY="1" pX="0" pY="0"/>
+                </display>
+            </slot>
+        </skin>
+        <animation name="scoreboard_0_" fadeInTime="0" duration="1" scale="1" loop="0" autoTween="1" tweenEasing="NaN">
+            <timeline name="Layer 1" scale="1" offset="0">
+                <frame z="0" displayIndex="1" duration="1">
+                    <transform x="0" y="0.05" skX="0" skY="0" scX="1" scY="1" pX="0" pY="0"/>
+                </frame>
+            </timeline>
+        </animation>
+        <animation name="coppermedal_0_" fadeInTime="0" duration="1" scale="1" loop="0" autoTween="1" tweenEasing="NaN">
+            <timeline name="Layer 2" scale="1" offset="0">
+                <frame z="0" displayIndex="1" duration="1">
+                    <transform x="0" y="0.05" skX="0" skY="0" scX="1" scY="1" pX="0" pY="0"/>
+                </frame>
+            </timeline>
+        </animation>
+        <animation name="goldmedal_0_" fadeInTime="0" duration="1" scale="1" loop="0" autoTween="1" tweenEasing="NaN">
+            <timeline name="Layer 3" scale="1" offset="0">
+                <frame z="0" displayIndex="1" duration="1">
+                    <transform x="0" y="0.05" skX="0" skY="0" scX="1" scY="1" pX="0" pY="0"/>
+                </frame>
+            </timeline>
+        </animation>
+        <animation name="silvermedal_0_" fadeInTime="0" duration="1" scale="1" loop="0" autoTween="1" tweenEasing="NaN">
+            <timeline name="Layer 4" scale="1" offset="0">
+                <frame z="0" displayIndex="1" duration="1">
+                    <transform x="0" y="0.05" skX="0" skY="0" scX="1" scY="1" pX="0" pY="0"/>
+                </frame>
+            </timeline>
+        </animation>
+    </armature>
+</dragonBones>

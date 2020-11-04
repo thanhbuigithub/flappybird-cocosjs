@@ -20,21 +20,24 @@ var ScreenDragonbones = cc.Layer.extend({
         this.pipesSpace = 150;
         this.minPosTopPipe = 200;
         this.maxPosTopPipe = 366;
-        this.pipesSpeed = 3;
+        this.pipesSpeed = 2.5;
         this.gravity = -900;
         this.currentSpeed = 300;
         this.maxBirdJumpDistance = 50;
         this.currentPosition = 0;
-        this.spawnPipesDelay = 60;
+        this.spawnPipesDelay = 90;
         this.spawnPipesIndex = 0;
         this.score = 0;
+        this.bestScore = 0;
+        this.copperLimit = 20;
+        this.silverLimit = 50;
+        this.goldLimit = 100;
 
-        this.bird ={size: {height: 24, width: 34}}
+        this.bird ={size: {height: 24, width: 34}};
 
-        this.pipe = {size: {height: 320, width: 52}}
+        this.pipe = {size: {height: 320, width: 52}};
 
         this.state = State.Ready;
-
         //var btnPlayIdle = gv.commonButton(200, 64, size.width - 120, size.height - 52,"Dead");
         //this.addChild(btnPlayIdle);
         //btnPlayIdle.addClickEventListener(this.startFly.bind(this));
@@ -94,11 +97,13 @@ var ScreenDragonbones = cc.Layer.extend({
         this.background.getAnimation().gotoAndPlay("background_0_",0);
         this.background.size = {height: 512, width: 288};
 
+        this.scaleX = size.width/this.background.size.width;
+        this.scaleY = size.height/this.background.size.height;
+
         this.base = fr.createAnimationById(resAniId.background,this);
         this.nodeAnimation.addChild(this.base);
         this.base.getAnimation().gotoAndPlay("base_0_",0);
         this.base.setLocalZOrder(10);
-        //this.base.runAction(cc.ScaleTo(0,288/336,1));
         this.base.size = {height: 112, width: 336};
         this.base.y = -this.background.size.height/2+this.base.size.height/2;
         this.base.x = (this.base.size.width-this.background.size.width)*0.5;
@@ -107,7 +112,6 @@ var ScreenDragonbones = cc.Layer.extend({
         this.nodeAnimation.addChild(this.nextBase);
         this.nextBase.getAnimation().gotoAndPlay("base_0_",0);
         this.nextBase.setLocalZOrder(10);
-        //this.base.runAction(cc.ScaleTo(0,288/336,1));
         this.nextBase.size = {height: 112, width: 336};
         this.nextBase.y = -this.background.size.height/2+this.base.size.height/2;
         this.nextBase.x = this.base.size.width;
@@ -119,6 +123,7 @@ var ScreenDragonbones = cc.Layer.extend({
         this.gameover = fr.createAnimationById(resAniId.background,this);
         this.gameover.getAnimation().gotoAndPlay("gameover_0_",0);
         this.gameover.setLocalZOrder(20);
+        this.gameover.y = this.base.size.height/2 + 50;
         this.gameover.retain();
         //this.scoreLable = new cc.LabelBMFont(this.scoreLable, );
         //this.scoreLable.string = this.score;
@@ -126,12 +131,56 @@ var ScreenDragonbones = cc.Layer.extend({
 
         this.nodeAnimation.addChild(this.lblScore);
 
+        this.scoreboard = fr.createAnimationById(resAniId.scoreboard,this);
+        this.scoreboard.getAnimation().gotoAndPlay("scoreboard_0_",0);
+        this.scoreboard.setLocalZOrder(20);
+        //this.scoreboard.y = this.base.size.height/2;
+        this.scoreboard.retain();
+        this.nodeAnimation.addChild(this.scoreboard);
+
+
+        this.medal = fr.createAnimationById(resAniId.scoreboard,this);
+        this.medal.getAnimation().gotoAndPlay("coppermedal_0_",0);
+        this.medal.setLocalZOrder(21);
+        this.medal.x = -65;
+        this.medal.y = -6;
+        this.medal.retain();
+        //this.scoreboard.addChild(this.medal);
+
+        this.score_scoreBoard = new cc.LabelBMFont("0",res.FONT_BITMAP_SCORE);
+        this.score_scoreBoard.setLocalZOrder(21);
+        this.score_scoreBoard.setScale(0.5);
+        this.score_scoreBoard.y = 22;
+        this.score_scoreBoard.x = 92;
+        this.score_scoreBoard.setAnchorPoint(1,0.5);
+        this.score_scoreBoard.scale = 0.2;
+        this.score_scoreBoard.retain();
+        this.scoreboard.addChild(this.score_scoreBoard);
+
+        this.best_scoreBoard = new cc.LabelBMFont("0",res.FONT_BITMAP_SCORE);
+        this.best_scoreBoard.setLocalZOrder(21);
+        this.best_scoreBoard.setScale(0.5);
+        this.best_scoreBoard.y = -22;
+        this.best_scoreBoard.x = 92;
+        this.best_scoreBoard.setAnchorPoint(1,0.5);
+        this.best_scoreBoard.scale = 0.2;
+        this.best_scoreBoard.retain();
+        this.scoreboard.addChild(this.best_scoreBoard);
+
+        //this.background.setScaleX(this.aaaa);
+        //cc.log(JSON.stringify(this.background.getBoundingBox()));
+
         this.startFly();
 
         cc.eventManager.addListener({
             event: cc.EventListener.TOUCH_ONE_BY_ONE,
             swallowTouches: true,
             onTouchBegan: this.onTouchBegan,
+        }, this);
+
+        cc.eventManager.addListener({
+            event: cc.EventListener.KEYBOARD,
+            onKeyPressed: this.onKeyPressed
         }, this);
 
 
@@ -143,6 +192,14 @@ var ScreenDragonbones = cc.Layer.extend({
         }
         if (tar.state === State.Dead) tar.startFly();
         return false;
+    },
+    onKeyPressed: function (keyCode, event) {
+        if (keyCode != 32) return;
+        var tar = event.getCurrentTarget();
+        if (tar.state === State.Ready || tar.state === State.Play){
+            tar.onSelectJump()
+        }
+        if (tar.state === State.Dead) tar.startFly();
     },
     onEnter:function(){
         this._super();
@@ -219,12 +276,16 @@ var ScreenDragonbones = cc.Layer.extend({
         this.lblScore.retain()
     },
     scrollBase: function(){
-        this.base.x-=3;
-        this.nextBase.x-=3;
-        if (this.base.x <= -this.base.size.width*0.5-this.background.size.width*0.5)
-            this.base.x = this.base.size.width;
-        if (this.nextBase.x <= -this.nextBase.size.width*0.5-this.background.size.width*0.5)
-            this.nextBase.x = this.nextBase.size.width;
+        var i = 0;
+        while (i<this.pipesSpeed) {
+            this.base.x -= 1;
+            this.nextBase.x -= 1;
+            if (this.base.x <= -this.base.size.width * 0.5 - this.background.size.width * 0.5)
+                this.base.x = this.base.size.width;
+            if (this.nextBase.x <= -this.nextBase.size.width * 0.5 - this.background.size.width * 0.5)
+                this.nextBase.x = this.nextBase.size.width;
+            i++;
+        }
     },
     detectCollision: function(){
         const top_bird = this.character.y + this.bird.size.height/2;
@@ -255,6 +316,19 @@ var ScreenDragonbones = cc.Layer.extend({
         this.character.getAnimation().gotoAndPlay("idle_0_",0);
         this.fall();
         this.nodeAnimation.addChild(this.gameover);
+        if (this.score > this.bestScore) this.bestScore = this.score;
+
+        var medal = "";
+        if (this.score >= this.copperLimit) medal = "copper";
+        else if (this.score >= this.silverLimit) medal = "silver";
+        else if (this.score >= this.goldLimit) medal = "gold";
+        if(medal) {
+            this.medal.getAnimation().gotoAndPlay(medal + "medal_0_",0);
+            this.scoreboard.addChild(this.medal);
+        }
+        this.score_scoreBoard.setString(this.score.toString());
+        this.best_scoreBoard.setString(this.bestScore.toString());
+        this.nodeAnimation.addChild(this.scoreboard);
         this.character.setLocalZOrder(3);
     },
     onSelectJump: function(){
@@ -297,18 +371,8 @@ var ScreenDragonbones = cc.Layer.extend({
     //},
     startFly:function()
     {
-        if(this.character)
-            this.character.removeFromParent(true);
-        if(this.pipesGroup.length > 0)
-            for(var i=0;i<this.pipesGroup.length;i++){
-                this.removePipes(i)
-            }
-        this.pipesGroup=[];
-        this.state = State.Ready;
         this.reset();
 
-        this.gameover.retain();
-        this.gameover.removeFromParent(false);
         this.nodeAnimation.addChild(this.message);
         this.character = fr.createAnimationById(resAniId.bird,this);
         //doi mau, yeu cau phai co file shader, nhung bone co ten bat dau tu color_ se bi doi mau
@@ -370,6 +434,23 @@ var ScreenDragonbones = cc.Layer.extend({
         //this.schedule(movePipes, 0.005);
     },
     reset: function(){
+        if(this.character)
+            this.character.removeFromParent(true);
+        if(this.pipesGroup.length > 0)
+            for(var i=0;i<this.pipesGroup.length;i++){
+                this.removePipes(i)
+            }
+        this.pipesGroup=[];
+        this.state = State.Ready;
+
+        this.gameover.retain();
+        this.gameover.removeFromParent(false);
+
+        this.scoreboard.retain();
+        this.scoreboard.removeFromParent(false);
+        this.medal.retain();
+        this.medal.removeFromParent(false);
+
         this.currentSpeed = 300;
         this.score = 0;
         this.lblScore.setString(this.score.toString());

@@ -4,6 +4,7 @@
 
 //id
 var resAniId = {
+	scoreboard: "scoreboard",
 	background: "background",
 	pipe: "pipe",
 	bird: "bird",
@@ -14,7 +15,7 @@ firework_test: "firework_test"
 };
 
 //path
-var resAni = {
+var resAni = {scoreboard: "game/animation/scoreboard",
 	background: "game/animation/background",
 	pipe: "game/animation/pipe",
 	bird: "game/animation/character/bird",
