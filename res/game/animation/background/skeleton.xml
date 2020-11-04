@@ -9,20 +9,28 @@
         <bone name="Layer 3">
             <transform x="0" y="0.05" skX="0" skY="0" scX="1" scY="1"/>
         </bone>
+        <bone name="Layer 4">
+            <transform x="0" y="0.05" skX="0" skY="0" scX="1" scY="1"/>
+        </bone>
         <skin name="default">
-            <slot name="Layer 1" parent="Layer 1" z="2">
+            <slot name="Layer 1" parent="Layer 1" z="0">
                 <display name="background-day" type="image">
                     <transform x="-144" y="-256" skX="0" skY="0" scX="1" scY="1" pX="0" pY="0"/>
                 </display>
             </slot>
-            <slot name="Layer 2" parent="Layer 2" z="1">
-                <display name="pipe-green" type="image">
-                    <transform x="-26" y="-160" skX="0" skY="0" scX="1" scY="1" pX="0" pY="0"/>
+            <slot name="Layer 2" parent="Layer 2" z="0">
+                <display name="base" type="image">
+                    <transform x="-168" y="-56" skX="0" skY="0" scX="1" scY="1" pX="0" pY="0"/>
                 </display>
             </slot>
             <slot name="Layer 3" parent="Layer 3" z="0">
-                <display name="base" type="image">
-                    <transform x="-168" y="-56" skX="0" skY="0" scX="1" scY="1" pX="0" pY="0"/>
+                <display name="message" type="image">
+                    <transform x="-92" y="-133.5" skX="0" skY="0" scX="1" scY="1" pX="0" pY="0"/>
+                </display>
+            </slot>
+            <slot name="Layer 4" parent="Layer 4" z="0">
+                <display name="gameover" type="image">
+                    <transform x="-96" y="-21" skX="0" skY="0" scX="1" scY="1" pX="0" pY="0"/>
                 </display>
             </slot>
         </skin>
@@ -33,15 +41,22 @@
                 </frame>
             </timeline>
         </animation>
-        <animation name="pipe_0_" fadeInTime="0" duration="1" scale="1" loop="0" autoTween="1" tweenEasing="NaN">
+        <animation name="base_0_" fadeInTime="0" duration="1" scale="1" loop="0" autoTween="1" tweenEasing="NaN">
             <timeline name="Layer 2" scale="1" offset="0">
                 <frame z="0" displayIndex="1" duration="1">
                     <transform x="0" y="0.05" skX="0" skY="0" scX="1" scY="1" pX="0" pY="0"/>
                 </frame>
             </timeline>
         </animation>
-        <animation name="base_0_" fadeInTime="0" duration="1" scale="1" loop="0" autoTween="1" tweenEasing="NaN">
+        <animation name="message_0_" fadeInTime="0" duration="1" scale="1" loop="0" autoTween="1" tweenEasing="NaN">
             <timeline name="Layer 3" scale="1" offset="0">
+                <frame z="0" displayIndex="1" duration="1">
+                    <transform x="0" y="0.05" skX="0" skY="0" scX="1" scY="1" pX="0" pY="0"/>
+                </frame>
+            </timeline>
+        </animation>
+        <animation name="gameover_0_" fadeInTime="0" duration="1" scale="1" loop="0" autoTween="1" tweenEasing="NaN">
+            <timeline name="Layer 4" scale="1" offset="0">
                 <frame z="0" displayIndex="1" duration="1">
                     <transform x="0" y="0.05" skX="0" skY="0" scX="1" scY="1" pX="0" pY="0"/>
                 </frame>

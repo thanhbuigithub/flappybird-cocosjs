@@ -7,6 +7,7 @@ var res = {
     //font
     FONT_BITMAP_NUMBER_1:"fonts/number_1.fnt",
     FONT_BITMAP_DICE_NUMBER: "fonts/diceNumber.fnt",
+    FONT_BITMAP_SCORE: "fonts/number.fnt",
     //zcsd
     //screen
     ZCSD_SCREEN_MENU:"zcsd/screen_menu.json",
